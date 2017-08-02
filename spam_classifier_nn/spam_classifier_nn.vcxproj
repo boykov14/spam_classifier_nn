@@ -111,6 +111,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\mathematics\matrix_operations\matrix_operations\matrix.cpp" />
+    <ClCompile Include="..\..\linear_classifier\linear_classifier\load_dictionary.cpp" />
+    <ClCompile Include="dataManipulations.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="neural_network.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\mathematics\matrix_operations\matrix_operations\matrix.h" />
+    <ClInclude Include="..\..\linear_classifier\linear_classifier\load_dictionary.h" />
+    <ClInclude Include="dataManipulations.h" />
+    <ClInclude Include="neural_network.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
