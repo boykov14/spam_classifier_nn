@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 
-//#include "matrix.h"
+#include "matrix.h"
 
 template <class T>
 class neural_network {
@@ -17,13 +17,15 @@ private:
 
 	int layers;
 	std::vector<int> dimentions;
-	T lol;
-	//vector<matrix<T>> Thetas;
+	std::vector<matrix<T>> Thetas;
 
 public:
 
 	neural_network(std::vector<int> dims);
 	~neural_network();
+
+	matrix<T> forwards_propogation();
+	float cost();
 };
 
 /*constructor for the neural network which initializes thetas to random values
@@ -35,8 +37,10 @@ neural_network<T>::neural_network(std::vector<int> dims) {
 	dimentions = dims;
 	
 	//initializing thetas
-	for (int i = 1; i < layers; i++) {
-		matrix<T> newM(1, 1, 1);
+	for (int i = 1; i <= layers; i++) {
+		matrix<T> newM(dims[i], dims[i-1]);
+		newM.random(0.24);
+		Thetas.push_back(newM);
 	}
 }
 
@@ -47,6 +51,22 @@ neural_network<T>::~neural_network() {
 	for (int i = 0; i < layers; i++) {
 		Thetas[i].~matrix();
 	}
+}
+
+/**propogates forwards through the neural network
+*@returns the resulting matrix
+*/
+template<class T>
+matrix<T> neural_network<T>::forwards_propogation() {
+	return matrix<T> lol(1, 1);
+}
+
+/**determining the cost of the neural network
+*@return the cost of the neural network
+*/
+template<class T>
+float neural_network<T>::cost() {
+	return 1.1;
 }
 
 #endif
