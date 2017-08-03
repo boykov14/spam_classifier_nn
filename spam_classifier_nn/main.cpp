@@ -13,6 +13,8 @@ int main() {
 
 	//getting the dimentions of the data matrix
 	//int lol = data.getData().getSizeTest();
+
+	matrix<float>::dims t;
 	std::vector<int> mn = data.getData().getSize();
 	std::vector<int> mn2 = testData.getData().getSize();
 
