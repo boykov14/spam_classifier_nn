@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "linearClassifier.h"
+#include "neural_network.h"
 #include "matrix.h"
-#include "dataManipulations.h"
+#include "data_manipulations.h"
 
 int main() {
 
 	//extracting data
-	matrix data = getData("C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\SpamTrain\\message", "C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\HamTrain\\message", 1078, 1080);
-	matrix testData = getData("C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\SpamTest\\message", "C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\HamTest\\message", 528, 463);
+	data_extractor<float> data("C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\SpamTrain\\message", "C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\HamTrain\\message", 1078, 1080);
+	data_extractor<float> testData("C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\SpamTest\\message", "C:\\home\\Anton\\coding\\data\\grade_12_spamClassifier\\HamSpamToStudents\\HamTest\\message", 528, 463);
 
 	//getting the dimentions of the data matrix
-	std::vector<int> mn = data.getSize();
-	std::vector<int> mn2 = data.getSize();
+	//int lol = data.getData().getSizeTest();
+	std::vector<int> mn = data.getData().getSize();
+	std::vector<int> mn2 = testData.getData().getSize();
 
 	//checking that the test and training data match
 	if (mn[1] != mn2[1]) {
@@ -23,13 +24,14 @@ int main() {
 
 
 	//separating X and Y
-	matrix X = data.getColumn(0, mn[1] - 2);
-	matrix Y = data.getColumn(mn[1] - 1);
-	matrix X2 = testData.getColumn(0, mn2[1] - 2);
-	matrix Y2 = testData.getColumn(mn2[1] - 1);
+	matrix<float> X = data.getData().getColumn(0, mn[1] - 2);
+	matrix<float> Y = data.getData().getColumn(mn[1] - 1);
+	matrix<float> X2 = testData.getData().getColumn(0, mn2[1] - 2);
+	matrix<float> Y2 = testData.getData().getColumn(mn2[1] - 1);
 
 	//setting up the initial weights lambada , alpha, and the number of iterations for gradient descent and normalizing X
-	matrix theta(X.getSize()[1], 1, 0);
+	/*
+	matrix<float> theta(X.getSize()[1], 1, 0);
 
 	float lambada = 0;
 
@@ -38,7 +40,7 @@ int main() {
 	int iterations = 5000;
 
 	//normalizing the data
-	std::pair<matrix, std::vector<matrix>> normalized = normalizeFeatures(X);
+	std::pair<matrix<float>, std::vector<matrix<float>>> normalized = normalizeFeatures(X);
 	X = normalized.first;
 	X2 = normalizeFeatures(X2, normalized.second);
 
@@ -52,6 +54,7 @@ int main() {
 	//display the final weights and cost
 	theta.display();
 	std::cout << percentError(theta, X2, Y2, lambada);
+	*/
 
 	std::getchar();
 }
