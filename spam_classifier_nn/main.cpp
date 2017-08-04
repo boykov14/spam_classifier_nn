@@ -26,14 +26,16 @@ int main() {
 
 
 	//separating X and Y
-	matrix<TYPE> X = data.getData().getColumn(0, mn[1] - 2);
+	matrix<TYPE> X = data.getData().getColumn(1, mn[1] - 2);
 	matrix<TYPE> Y = data.getData().getColumn(mn[1] - 1);
-	matrix<TYPE> X2 = testData.getData().getColumn(0, mn2[1] - 2);
+	matrix<TYPE> X2 = testData.getData().getColumn(1, mn2[1] - 2);
 	matrix<TYPE> Y2 = testData.getData().getColumn(mn2[1] - 1);
 
 	//setting up the neural network
-	std::vector<int> layers = { mn[1],25,1 };
+	std::vector<int> layers = { X.getSize()[1],25,1 };
 	neural_network<TYPE> net(layers);
+
+	/*std::cout << */(net.gradient(X, Y));
 
 	std::cout << "done" << std::endl;
 	std::getchar();
