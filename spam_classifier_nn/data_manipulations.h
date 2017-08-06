@@ -132,7 +132,7 @@ matrix<T> data_extractor<T>::extractData(std::string filename) {
 
 		while (input.length() > 0) {
 			if (isdigit(input[0]) || input[0] == '-') {
-				vals.push_back(std::stof(input, &pos));
+				vals.push_back((T)(std::stof(input, &pos)));
 				input = input.substr(pos);
 			}
 			else {
