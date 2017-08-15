@@ -24,7 +24,7 @@ private:
 
 public:
 
-	data_extractor(std::string filepath1, std::string filepath2, int numSpam, int numHam);
+	data_extractor(std::string filepath, int numSamples, int y);
 	~data_extractor();
 
 	matrix<T> extractData(std::string filename);
@@ -34,7 +34,7 @@ public:
 };
 
 template <class T>
-data_extractor<T>::data_extractor(std::string filepath1, std::string filepath2, int numSpam, int numHam) {
+data_extractor<T>::data_extractor(std::string filepath, int numSamples, int y) {
 
 	loadDict("dictionary.txt");
 
@@ -43,16 +43,16 @@ data_extractor<T>::data_extractor(std::string filepath1, std::string filepath2, 
 	std::vector<std::vector<T>> x;
 
 	//gatherng data from spam dataset
-	for (int i = 1; i <= numSpam; i++) {
+	for (int i = 1; i <= numSamples; i++) {
 
-		std::string path = filepath1;
+		std::string path = filepath;
 
 		//adding the proper extentions to the filenames
 		path += to_string(i);
 		path += ".txt";
 
 		//extracting data from the file
-		results = extractFeaturesText(path, 1);
+		results = extractFeaturesText(path, y);
 		if (results.size() == 0) {
 			std::cerr << "error extracting features" << std::endl;
 		}
@@ -60,7 +60,7 @@ data_extractor<T>::data_extractor(std::string filepath1, std::string filepath2, 
 		x.push_back(results);
 	}
 
-	//gathering the ham data
+	/*gathering the ham data
 	for (int i = 1; i <= numHam; i++) {
 
 		string path = filepath2;
@@ -73,7 +73,7 @@ data_extractor<T>::data_extractor(std::string filepath1, std::string filepath2, 
 		results = extractFeaturesText(path, 0);
 
 		x.push_back(results);
-	}
+	}*/
 
 	unloadDictionary();
 
