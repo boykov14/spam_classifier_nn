@@ -6,7 +6,7 @@
 #include "data_manipulations.h"
 
 //specifying the type for all of the operations of the neural_network, data_extraction, and matricies
-#define TYPE long
+#define TYPE double
 
 int main() {
 	
@@ -34,6 +34,8 @@ int main() {
 	//setting up the neural network
 	std::vector<int> layers = { X.getSize()[1], 50, 40, 1 };
 	neural_network<TYPE> net(layers);
+
+	//net.gradient(X, Y);
 
 	std::cout << "running backprop..." << std::endl;
 	net.back_propogation(X, Y, 0.1, 10000, X2, Y2);
